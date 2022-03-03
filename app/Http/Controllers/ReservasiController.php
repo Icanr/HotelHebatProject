@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\TipeKamar;
 use App\Models\Reservasi;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ReservasiController extends Controller
 {
@@ -14,7 +15,10 @@ class ReservasiController extends Controller
      */
     public function index()
     {
-        //
+        $resepsionis = Reservasi::latest()->filter(request(['check_in', 'search']))->paginate(5);
+
+        return view('resepsionis.index',compact('resepsionis'))
+        ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
@@ -24,7 +28,8 @@ class ReservasiController extends Controller
      */
     public function create()
     {
-        //
+        $tipe_kamar = TipeKamar::all();
+        return view('pemesanan.index', compact('tipe_kamar'));
     }
 
     /**
@@ -35,7 +40,20 @@ class ReservasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'nama_tamu'=>'required',
+            'check_in'=>'required',
+            'check_out'=>'required',
+            'email' => 'required',
+            'no_handphone' => 'required',
+            'tipe_kamar' => 'required',
+            'jumlah_kamar' => 'required',
+        ]);
+
+        $validateData['status'] = 'Belum Check In';
+        $reservasi = Reservasi::create($validateData);
+        
+        return redirect()->route('reservasi.bukti', $reservasi->id);
     }
 
     /**
@@ -57,7 +75,11 @@ class ReservasiController extends Controller
      */
     public function edit(Reservasi $reservasi)
     {
-        //
+        return view('resepsionis.edit', [
+            'nama_tamu' => $reservasi,
+            'check_in' => $reservasi,
+            'check_out' => $reservasi,
+        ]);
     }
 
     /**
@@ -67,9 +89,13 @@ class ReservasiController extends Controller
      * @param  \App\Models\Reservasi  $reservasi
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservasi $reservasi)
+    public function update(Request $request, $id)
     {
-        //
+        $reservasi = Reservasi::find($id); 
+        $reservasi->update(['status' => 'Sudah Check In']);
+
+        return redirect()->route('resepsionis_kamar.index')
+                         ->with('success','Berhasil Update Status');
     }
 
     /**
@@ -80,6 +106,15 @@ class ReservasiController extends Controller
      */
     public function destroy(Reservasi $reservasi)
     {
-        //
+        $reservasi->delete();
+     
+        return redirect()->route('resepsionis.index')
+                        ->with('success','Berhasil Hapus !');
     }
+    public function bukti($id)
+    {   
+        $pdf = Pdf::loadView('cetak', ['reservasi' => Reservasi::find($id)]);
+        return $pdf->stream('cetak.pdf');
+    }
+    
 }

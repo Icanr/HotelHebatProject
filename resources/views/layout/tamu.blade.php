@@ -50,9 +50,10 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="active " href="index.html">Home</a></li>
-          <li><a href="/kamar">Kamar</a></li>
-          <li><a href="/fasilitas">Fasilitas</a></li>  
+        <li><b><span class="active">Tamu</span></b></li>
+          <li><a class="active " href="/kamar">Kamar</a></li>
+          <li><a class="active " href="/fasilitas">Fasilitas</a></li>  
+          <li><a href="/display">Kembali</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -76,63 +77,9 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
+  @yield('content')
     <!-- ======= Services Section ======= -->
-    <section class="services">
-        <form action="post">
-        <table align="center">
-          <tr align="center">
-            <td><div style="color:black">Tanggal Check In</td>
-            <td><div style="color:black">Tanggal Check Out</td>
-            <td><div style="color:black">Jumlah Kamar</td>
-          </tr>
-          <tr>
-          <td><input type="date" name="checkin" value="">&nbsp;&nbsp;</td>
-          <td><input type="date" name="checkout" value="">&nbsp;&nbsp;</td>
-          <td><input type="number" name="jumlahkamar" value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-          <td><input type="submit" name="pesan" value="Pesan"></td>
-          </tr>
-          <br>
-          <br>
-          <br>
-        </table>
-      </form>
-      </div>
-      <div>
-      <form action="post">
-        <table align="center">
-          <tr>
-            <td><div style="color:black">Nama Pemesan</td>
-            <td><input type="text" name="namapemesan" value=""></td>
-          </tr>
-          <tr>
-            <td><div style="color:black">Email</td>
-            <td><input type="text" name="email" value=""></td>
-          </tr>
-          <tr>
-            <td><div style="color:black">No Handphone</td>
-            <td><input type="text" name="nohp" value=""></td>
-          </tr>
-          <tr>
-            <td><div style="color:black">Tipe Kamar</td>
-            <td>
-              <select>
-                <option value="">Pilih</option>
-                <option value="Standard Double Bed">Standard Double Bed</option>
-                <option value="Deluxe Queen Size">Deluxe Queen Size</option>
-                <option value="Luxury King Size">Luxury King Size</option>
-              </select>
-            </td>
-          </tr>
-          <br>
-          <br>
-          <tr align="center">
-          <td><input type="submit" name="pesan" value="Konfirmasi Pesanan"></td>
-          </tr>
-        </table>
-      </form>
-      </div>
-    </section><!-- End Services Section -->
+   <!-- End Services Section -->
 
   
   </main><!-- End #main -->
@@ -143,7 +90,7 @@
           <div class="container" align="center">
             <h4>Contact Us</h4>
             <p>
-              Jl.Kenangan Ray<br>
+              Jl.Kenangan Raya<br>
               No.98 Bogor<br>
               Indonesia<br><br>
               <strong>Phone:</strong> +62 8 234 8979<br>

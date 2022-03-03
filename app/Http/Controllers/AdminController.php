@@ -27,7 +27,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $admins = Admin::all();
+        return view('admin.create', compact('admins'));
     }
 
     /**
@@ -38,7 +39,15 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+
+            'username'=>'required',
+            'password'=>'required',
+        ]);
+
+        Admin::create($request->all());
+        return redirect()->route('admin.index')
+                         ->with('success','Berhasil Disimpan');
     }
 
     /**
@@ -60,7 +69,7 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        //
+        return view('admin.edit',compact('admin'));
     }
 
     /**
@@ -72,7 +81,15 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+        $request->validate()([
+            'usernama'=>'required',
+            'password'=>'required',
+        ]);
+
+        $fasilitas_kamar->update($request->all());
+
+        return redirect()->route('admin_fasilitas_kamar.edit')
+                         ->with('success','Berhasil Diedit');
     }
 
     /**

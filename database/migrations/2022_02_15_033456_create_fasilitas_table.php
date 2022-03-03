@@ -17,6 +17,7 @@ class CreateFasilitasTable extends Migration
             $table->id();
             $table->string('nama_fasilitas');
             $table->string('keterangan');
+            $table->string('image');
             $table->timestamps();
         });
     }

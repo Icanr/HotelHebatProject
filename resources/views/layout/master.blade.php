@@ -65,8 +65,8 @@
           <h2 class="animate__animated animate__fadeInDown">Welcome to <span>Hotel Hebat</span></h2>
           <p class="animate__animated animate__fadeInUp">Jl.Kenangan Raya No.98, Bogor, Indonesia</p>
           <a href="/tamu" class="btn-get-started animate__animated animate__fadeInUp">Tamu</a>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Admin</a>
-          <a href="" class="btn-get-started animate__animated animate__fadeInUp">Resepsionis</a>
+          <a href="/admin_kamar" class="btn-get-started animate__animated animate__fadeInUp">Admin</a>
+          <a href="/resepsionis_kamar" class="btn-get-started animate__animated animate__fadeInUp">Resepsionis</a>
         </div>
       </div>
     </div>

@@ -15,9 +15,9 @@ class CreateTipeKamarTable extends Migration
     {
         Schema::create('tipe_kamar', function (Blueprint $table) {
             $table->id();
-            $table->string('tipe_kamar');
-            $table->string('jumlah_kamar');
-            $table->string('fasilitas');
+            $table->string('tipe_kamar')->nullable();
+            $table->string('jumlah_kamar')->nullable();
+            $table->string('fasilitas')->nullable();
             $table->timestamps();
         });
     }
